@@ -78,14 +78,15 @@ namespace Application.UseCases
                     Precio = servicioRequest.Precio,
                 };
                 servicioToUpdate.Nombre = char.ToUpper(servicioToUpdate.Nombre[0]) + servicioToUpdate.Nombre.Substring(1);
-                if (VerifyHTTP409Modify(servicioToUpdate))
-                {
-                    throw new Conflict("Existe otro servicio con el mismo nombre a modificar");
-                }
                 if (VerifyHTTP404(IdServicio))
                 {
                     throw new ExceptionNotFound("No existe un servicio con ese ID");
                 }
+                if (VerifyHTTP409Modify(servicioToUpdate))
+                {
+                    throw new Conflict("Existe otro servicio con el mismo nombre a modificar");
+                }
+                
                 servicioToUpdate = _command.ModifyServicio(IdServicio, servicioToUpdate);
                 return new ServicioResponse
                 {
@@ -148,7 +149,7 @@ namespace Application.UseCases
             {
                 List<Servicio> listaServicios = _query.GetAllServicios();
                 List<ServicioResponse> listaServiciosResponse = new List<ServicioResponse>();
-                if (listaServicios != null)
+                if (listaServicios.Count() > 0)
                 {
                     foreach (Servicio unServicio in listaServicios)
                     {

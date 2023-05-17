@@ -25,9 +25,9 @@ namespace Infraestructure.Queries
             {
                 return _context.ViajeServicios.ToList();
             }
-            catch (Exception)
+            catch (DbUpdateException)
             {
-                throw new ExceptionNotFound();
+                throw new ExceptionNotFound("No existen Viaje Servicio");
             }
         }
 
@@ -36,12 +36,12 @@ namespace Infraestructure.Queries
         {
             try
             {
-                ViajeServicio unViajeServicio = _context.ViajeServicios.Single(x => x.ViajeServicioId == IdViajeServicio);
+                ViajeServicio unViajeServicio = _context.ViajeServicios.SingleOrDefault(x => x.ViajeServicioId == IdViajeServicio);
                 return unViajeServicio;
             }
-            catch (Exception)
+            catch (DbUpdateException)
             {
-                throw new ExceptionNotFound();
+                throw new ExceptionNotFound("No se encontró el viaje servicio solicitado");
             }
         }
     }

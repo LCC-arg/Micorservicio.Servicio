@@ -25,9 +25,9 @@ namespace Infraestructure.Queries
             {
                 return _context.Servicio.ToList();
             }
-            catch (Exception)
+            catch (DbUpdateException)
             {
-                throw new ExceptionNotFound();
+                throw new ExceptionNotFound("No se encontraron los servicios solicitado");
             }
         }
 
@@ -37,12 +37,12 @@ namespace Infraestructure.Queries
             {
                 Servicio unServicio = _context.Servicio
                     //.Include(s => s.ViajeServicios)
-                    .Single(x => x.ServicioId == idServicio);
+                    .SingleOrDefault(x => x.ServicioId == idServicio);
                 return unServicio;
             }
-            catch (Exception)
+            catch (DbUpdateException)
             {
-                throw new ExceptionNotFound();
+                throw new ExceptionNotFound("No se encontró el servicio solicitado");
             }
         }
     }

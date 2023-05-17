@@ -58,6 +58,7 @@ namespace MicroservicioServicios.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ServicioResponse), 200)]
         [ProducesResponseType(typeof(BadRequest), 400)]
+        [ProducesResponseType(typeof(BadRequest), 404)]
         public IActionResult GetServicioById(int id)
         {
             try
@@ -68,6 +69,10 @@ namespace MicroservicioServicios.Controllers
             catch (ExceptionSintaxError ex)
             {
                 return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
+            }
+            catch (ExceptionNotFound ex)
+            {
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 404 };
             }
         }
 

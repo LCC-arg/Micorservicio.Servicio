@@ -14,11 +14,12 @@ namespace Application.UseCases
 {
     public class ViajeServicioService : IViajeServicioService
     {
-        private readonly IViajeServicioQuery _query; IViajeServicioCommand _command;
-        public ViajeServicioService(IViajeServicioQuery query, IViajeServicioCommand command)
+        private readonly IViajeServicioQuery _query; IViajeServicioCommand _command; IServicioQuery _servQuery;
+        public ViajeServicioService(IViajeServicioQuery query, IViajeServicioCommand command, IServicioQuery servQuery)
         {
             _query = query;
             _command = command;
+            _servQuery = servQuery;
         }
 
         public ViajeServicioResponse CreateViajeServicio(ViajeServicioRequest viajeServicioRequest)
@@ -31,6 +32,10 @@ namespace Application.UseCases
                     ServicioId = viajeServicioRequest.ServicioId,
                     ViajeId = viajeServicioRequest.ViajeId,
                 };
+                if (VerifyServicioID(unViajeServicio.ServicioId))
+                {
+                    throw new Conflict("El Servicio no existe");
+                }
                 if (VerifyHTTP409Insert(unViajeServicio))
                 {
                     throw new Conflict("El Viaje Servicio ya existe");
@@ -121,7 +126,7 @@ namespace Application.UseCases
             {
                 List<ViajeServicio> listaViajeServicios = _query.GetAllViajeServicios();
                 List<ViajeServicioResponse> listaViajeServiciosResponse = new List<ViajeServicioResponse>();
-                if (listaViajeServicios != null)
+                if (listaViajeServicios.Count() > 0)
                 {
                     foreach (ViajeServicio unViajeServicio in listaViajeServicios)
                     {
@@ -168,9 +173,9 @@ namespace Application.UseCases
             {
                 throw new ExceptionSintaxError("Error en la sintaxis del IDServicio a buscar");
             }
-            catch (ExceptionNotFound)
+            catch (ExceptionNotFound ex)
             {
-                throw new ExceptionNotFound("Error en la búsqueda en la base de datos");
+                throw new ExceptionNotFound("Error en la búsqueda en la base de datos: " + ex.Message);
             }      
         }
 
@@ -203,6 +208,14 @@ namespace Application.UseCases
         private bool VerifyHTTP404(int IdViajeServicio)
         {
             if (_query.GetViajeServicioById(IdViajeServicio) == null)
+            {
+                return true;
+            }
+            return false;
+        }
+        private bool VerifyServicioID(int IdServicio)
+        {
+            if (_servQuery.GetServicioById(IdServicio) == null)
             {
                 return true;
             }
