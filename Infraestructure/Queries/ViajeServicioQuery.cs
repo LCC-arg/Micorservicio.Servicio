@@ -25,9 +25,9 @@ namespace Infraestructure.Queries
             {
                 return _context.ViajeServicios.ToList();
             }
-            catch (DbUpdateException ex)
+            catch (Exception)
             {
-                throw new Conflict("Error en solicitar a la base", ex);
+                throw new ExceptionNotFound();
             }
         }
 
@@ -39,9 +39,9 @@ namespace Infraestructure.Queries
                 ViajeServicio unViajeServicio = _context.ViajeServicios.Single(x => x.ViajeServicioId == IdViajeServicio);
                 return unViajeServicio;
             }
-            catch (DbUpdateException ex)
+            catch (Exception)
             {
-                throw new Conflict("Error en solicitar a la base", ex);
+                throw new ExceptionNotFound();
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Application.Requests;
+using Application.responses;
 using Application.Responses;
 using Domain.Entities;
 using System;
@@ -11,10 +12,11 @@ namespace Application.Interfaces
 {
     public interface IServicioService
     {
-        public ServicioResponse GetServicioById(int IdServicio);
+        
         public ServicioResponse CreateServicio(ServicioRequest servicioRequest);
         public ServicioResponse UpdateServicio(int idServicio, ServicioRequest servicioRequest);
         public ServicioResponse DeleteServicio(int IdServicio);
+        public GetServicioResponse GetServicioById(int IdServicio);
         public List<ServicioResponse> GetAllServicios();
     }
 }

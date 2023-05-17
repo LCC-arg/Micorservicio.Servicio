@@ -63,7 +63,7 @@ namespace MicroservicioServicios.Controllers
         {
             try
             {
-                var result = _service.GetViajeServicioById(Id);
+                var result = _service.GetViajeServicioById(id);
                 return new JsonResult(result) { StatusCode = 200 };
             }
             catch (ExceptionSintaxError ex)

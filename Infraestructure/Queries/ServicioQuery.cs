@@ -5,6 +5,7 @@ using Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,9 @@ namespace Infraestructure.Queries
             {
                 return _context.Servicio.ToList();
             }
-            catch (DbUpdateException ex)
+            catch (Exception)
             {
-                throw new Conflict("Error en solicitar a la base", ex);
+                throw new ExceptionNotFound();
             }
         }
 
@@ -35,13 +36,13 @@ namespace Infraestructure.Queries
             try
             {
                 Servicio unServicio = _context.Servicio
-                    .Include(s => s.ViajeServicios)
+                    //.Include(s => s.ViajeServicios)
                     .Single(x => x.ServicioId == idServicio);
                 return unServicio;
             }
-            catch (DbUpdateException ex)
+            catch (Exception)
             {
-                throw new Conflict("Error en solicitar a la base", ex);
+                throw new ExceptionNotFound();
             }
         }
     }

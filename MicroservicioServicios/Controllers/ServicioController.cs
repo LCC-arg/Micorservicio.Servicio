@@ -40,7 +40,7 @@ namespace MicroservicioServicios.Controllers
         }
         [HttpGet]
         [ProducesResponseType(typeof(ServicioResponse), 200)]
-        [ProducesResponseType(typeof(BadRequest), 400)]
+        [ProducesResponseType(typeof(BadRequest), 404)]
         public IActionResult GetAllServicios()
         {
             try
@@ -48,9 +48,9 @@ namespace MicroservicioServicios.Controllers
                 var result = _service.GetAllServicios();
                 return new JsonResult(result) { StatusCode = 200 };
             }
-            catch (ExceptionSintaxError ex)
+            catch (ExceptionNotFound ex)
             {
-                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
+                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 404 };
             }
         }
 
