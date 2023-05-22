@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VUN1xcZEgKZ3niMbKAPy7h8iW4SdlIrBjA7GcsoWCVSjZlcmpx6+xYiAxFRULgcTgK4pxoGhvWrH7Njx5g+J1w==",
+  "dgSpecHash": "8OGPFWPjiLl7zzxxiJ3CcZFbtl6V3+3tlhQyJ5njhl9botZAFik6dcuesQePIwQ1V1SLAi26EfxJfrh33ZlDPA==",
   "success": true,
-  "projectFilePath": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\MicroservicioServicios\\MicroservicioServicios.csproj",
+  "projectFilePath": "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\MicroservicioServicios\\MicroservicioServicios.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lucas\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Lucas\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

@@ -97,6 +97,14 @@ namespace Application.UseCases
                     ViajeId = viajeServicioRequest.ViajeId,
                     ServicioId = viajeServicioRequest.ServicioId,
                 };
+                if (VerifyHTTP404(viajeServicioToUpdate.ViajeServicioId))
+                {
+                    throw new ExceptionNotFound("No existe un viaje servicio con ese ID");
+                }
+                if (VerifyServicioID(viajeServicioToUpdate.ServicioId))
+                {
+                    throw new ExceptionNotFound("No existe un servicio con ese ID");
+                }
                 if (VerifyHTTP409Modify(viajeServicioToUpdate))
                 {
                     throw new Conflict("Ya exite el servicio en ese viaje");
@@ -122,35 +130,19 @@ namespace Application.UseCases
 
         public List<ViajeServicioResponse> GetAllViajesServicio()
         {
-            try
-            {
                 List<ViajeServicio> listaViajeServicios = _query.GetAllViajeServicios();
                 List<ViajeServicioResponse> listaViajeServiciosResponse = new List<ViajeServicioResponse>();
-                if (listaViajeServicios.Count() > 0)
+                foreach (ViajeServicio unViajeServicio in listaViajeServicios)
                 {
-                    foreach (ViajeServicio unViajeServicio in listaViajeServicios)
+                    ViajeServicioResponse unViajeServicioResponse = new ViajeServicioResponse
                     {
-                        ViajeServicioResponse unViajeServicioResponse = new ViajeServicioResponse
-                        {
-                            ViajeServicioId = unViajeServicio.ServicioId,
-                            ViajeId = unViajeServicio.ViajeId,
-                            ServicioId = unViajeServicio.ServicioId,
-                        };
-                        listaViajeServiciosResponse.Add(unViajeServicioResponse);
-                    }
-                    return listaViajeServiciosResponse;
+                        ViajeServicioId = unViajeServicio.ServicioId,
+                        ViajeId = unViajeServicio.ViajeId,
+                        ServicioId = unViajeServicio.ServicioId,
+                    };
+                    listaViajeServiciosResponse.Add(unViajeServicioResponse);
                 }
-                else
-                {
-                    throw new ExceptionNotFound("No existe ninguna lista de servicios");
-                }
-                
-            }
-            catch (ExceptionNotFound ex)
-            {
-                throw new ExceptionNotFound("Error la busqueda en la base de datos: " + ex.Message);
-            }
-
+                return listaViajeServiciosResponse;
         }
 
         public ViajeServicioResponse GetViajeServicioById(int idViajeServicio)

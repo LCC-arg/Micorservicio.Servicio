@@ -3533,11 +3533,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Application\\Application.csproj",
+      "projectUniqueName": "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Application\\Application.csproj",
+      "projectPath": "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-      "outputPath": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Application\\obj\\",
+      "outputPath": "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3554,8 +3554,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Domain\\Domain.csproj"
+            "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Domain\\Domain.csproj": {
+              "projectPath": "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Domain\\Domain.csproj"
             }
           }
         }

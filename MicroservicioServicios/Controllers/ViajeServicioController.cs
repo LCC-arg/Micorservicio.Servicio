@@ -40,18 +40,10 @@ namespace MicroservicioServicios.Controllers
         }
         [HttpGet]
         [ProducesResponseType(typeof(ViajeServicioResponse), 200)]
-        [ProducesResponseType(typeof(BadRequest), 400)]
-        public IActionResult GetAllComandas()
+        public IActionResult GetAllViajeServicios()
         {
-            try
-            {
                 var result = _service.GetAllViajesServicio();
-                return new JsonResult(result) { StatusCode = 200 };
-            }
-            catch (ExceptionSintaxError ex)
-            {
-                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };
-            }
+                return new JsonResult(result) { StatusCode = 200 };            
         }
 
 

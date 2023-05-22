@@ -145,37 +145,21 @@ namespace Application.UseCases
 
         public List<ServicioResponse> GetAllServicios()
         {
-            try
+            List<Servicio> listaServicios = _query.GetAllServicios();
+            List<ServicioResponse> listaServiciosResponse = new List<ServicioResponse>();
+            foreach (Servicio unServicio in listaServicios)
             {
-                List<Servicio> listaServicios = _query.GetAllServicios();
-                List<ServicioResponse> listaServiciosResponse = new List<ServicioResponse>();
-                if (listaServicios.Count() > 0)
+                ServicioResponse unServicioResponse = new ServicioResponse
                 {
-                    foreach (Servicio unServicio in listaServicios)
-                    {
-                        ServicioResponse unServicioResponse = new ServicioResponse
-                        {
-                            Id = unServicio.ServicioId,
-                            Nombre = unServicio.Nombre,
-                            Descripcion = unServicio.Descripción,
-                            Disponibilidad = unServicio.Disponibilidad,
-                            Precio = unServicio.Precio,
-                        };
-                        listaServiciosResponse.Add(unServicioResponse);
-                    }
-                    return listaServiciosResponse;
-                }
-                else
-                {
-                    throw new ExceptionNotFound("No existe ninguna lista de servicios");
-                }
-                
+                    Id = unServicio.ServicioId,
+                    Nombre = unServicio.Nombre,
+                    Descripcion = unServicio.Descripción,
+                    Disponibilidad = unServicio.Disponibilidad,
+                    Precio = unServicio.Precio,
+                };
+                listaServiciosResponse.Add(unServicioResponse);
             }
-            catch (ExceptionNotFound ex)
-            {
-                throw new ExceptionNotFound("Error la busqueda en la base de datos: " + ex.Message);
-            }
-            
+            return listaServiciosResponse;
         }
 
         public GetServicioResponse GetServicioById(int IdServicio)

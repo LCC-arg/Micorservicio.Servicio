@@ -40,18 +40,10 @@ namespace MicroservicioServicios.Controllers
         }
         [HttpGet]
         [ProducesResponseType(typeof(ServicioResponse), 200)]
-        [ProducesResponseType(typeof(BadRequest), 404)]
         public IActionResult GetAllServicios()
         {
-            try
-            {
-                var result = _service.GetAllServicios();
-                return new JsonResult(result) { StatusCode = 200 };
-            }
-            catch (ExceptionNotFound ex)
-            {
-                return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 404 };
-            }
+            var result = _service.GetAllServicios();
+            return new JsonResult(result) { StatusCode = 200 };
         }
 
 
