@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Domain\\Domain.csproj": {}
+    "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Domain\\Domain.csproj": {
+    "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Domain\\Domain.csproj",
+        "projectUniqueName": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Domain\\Domain.csproj",
+        "projectPath": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-        "outputPath": "E:\\facultad\\cuarto año\\primer cuatrimestre\\proyecto software\\Microservicio-Servicio-master\\Domain\\obj\\",
+        "outputPath": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNet.WebApi.Client": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[7.0.5, )"
@@ -49,6 +53,18 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[7.0.1, )"
             }
           },
           "imports": [

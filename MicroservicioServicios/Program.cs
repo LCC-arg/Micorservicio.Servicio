@@ -1,5 +1,6 @@
 using Application.Interfaces;
 using Application.UseCases;
+using Infraestructure.Client;
 using Infraestructure.Commands;
 using Infraestructure.Persistence;
 using Infraestructure.Queries;
@@ -26,6 +27,8 @@ builder.Services.AddScoped<IViajeServicioCommand, ViajeServicioCommand>();
 builder.Services.AddScoped<IServicioService, ServicioService>();
 builder.Services.AddScoped<IServicioQuery, ServicioQuery>();
 builder.Services.AddScoped<IServicioCommand, ServicioCommand>();
+
+builder.Services.AddScoped<IViajeApi, ViajeApi>(); 
 
 
 //CORS deshabilitar

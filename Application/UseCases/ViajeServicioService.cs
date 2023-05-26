@@ -14,24 +14,26 @@ namespace Application.UseCases
 {
     public class ViajeServicioService : IViajeServicioService
     {
-        private readonly IViajeServicioQuery _query; IViajeServicioCommand _command; IServicioQuery _servQuery;
-        public ViajeServicioService(IViajeServicioQuery query, IViajeServicioCommand command, IServicioQuery servQuery)
+        private readonly IViajeServicioQuery _query; IViajeServicioCommand _command; IServicioQuery _servQuery; IViajeApi _api;
+        public ViajeServicioService(IViajeServicioQuery query, IViajeServicioCommand command, IServicioQuery servQuery, IViajeApi api)
         {
             _query = query;
             _command = command;
             _servQuery = servQuery;
+            _api = api;
         }
 
         public ViajeServicioResponse CreateViajeServicio(ViajeServicioRequest viajeServicioRequest)
         {
             try
             {
-                
+
                 ViajeServicio unViajeServicio = new ViajeServicio
                 {
                     ServicioId = viajeServicioRequest.ServicioId,
                     ViajeId = viajeServicioRequest.ViajeId,
                 };
+                var response = _api.GetViajeById(unViajeServicio.ViajeId);
                 if (VerifyServicioID(unViajeServicio.ServicioId))
                 {
                     throw new Conflict("El Servicio no existe");
@@ -42,9 +44,9 @@ namespace Application.UseCases
                 }
                 ViajeServicio servicioIngresado = _command.InsertViajeServicio(unViajeServicio);
                 
-                    return new ViajeServicioResponse
+                return new ViajeServicioResponse
                 {
-                    ViajeServicioId = unViajeServicio.ServicioId,
+                    ViajeServicioId = unViajeServicio.ViajeServicioId,
                     ViajeId = unViajeServicio.ViajeId,
                     ServicioId = unViajeServicio.ServicioId,
                 };
@@ -55,7 +57,11 @@ namespace Application.UseCases
             }
             catch (ExceptionSintaxError)
             {
-                throw new ExceptionSintaxError("Error en la sintaxis de la mercadería en el registro");
+                throw new ExceptionSintaxError("Error en la sintaxis del viaje servicio en el registro");
+            }
+            catch (ExceptionNotFound ex)
+            {
+                throw new ExceptionSintaxError("Error en la busqueda: "+ex.Message);
             }
 
         }

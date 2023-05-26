@@ -370,3 +370,7 @@ D:\facultad\cuarto año\proyecto software\Microservicio Servicio\MicroservicioSe
 D:\facultad\cuarto año\proyecto software\Microservicio Servicio\MicroservicioServicios\obj\Debug\net6.0\MicroservicioServicios.pdb
 D:\facultad\cuarto año\proyecto software\Microservicio Servicio\MicroservicioServicios\obj\Debug\net6.0\MicroservicioServicios.genruntimeconfig.cache
 D:\facultad\cuarto año\proyecto software\Microservicio Servicio\MicroservicioServicios\obj\Debug\net6.0\ref\MicroservicioServicios.dll
+D:\facultad\cuarto año\proyecto software\Microservicio Servicio\MicroservicioServicios\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+D:\facultad\cuarto año\proyecto software\Microservicio Servicio\MicroservicioServicios\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\facultad\cuarto año\proyecto software\Microservicio Servicio\MicroservicioServicios\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\facultad\cuarto año\proyecto software\Microservicio Servicio\MicroservicioServicios\bin\Debug\net6.0\System.Net.Http.Json.dll
