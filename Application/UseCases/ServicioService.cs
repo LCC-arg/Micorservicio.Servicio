@@ -4,12 +4,6 @@ using Application.Requests;
 using Application.responses;
 using Application.Responses;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UseCases
 {
@@ -36,8 +30,6 @@ namespace Application.UseCases
                 {
                     Nombre = servicioRequest.Nombre,
                     Descripción = servicioRequest.Descripcion,
-                    Disponibilidad = servicioRequest.Disponibilidad,
-                    Precio = servicioRequest.Precio,
                 };
                 if (VerifyHTTP409Insert(servicio))
                 {
@@ -50,8 +42,6 @@ namespace Application.UseCases
                     Id = servicioIngresado.ServicioId,
                     Nombre = servicioIngresado.Nombre,
                     Descripcion = servicioIngresado.Descripción,
-                    Disponibilidad = servicioIngresado.Disponibilidad,
-                    Precio = servicioIngresado.Precio,
                 };
             }
             catch (Conflict ex)
@@ -74,8 +64,6 @@ namespace Application.UseCases
                 {
                     Nombre = servicioRequest.Nombre,
                     Descripción = servicioRequest.Descripcion,
-                    Disponibilidad = servicioRequest.Disponibilidad,
-                    Precio = servicioRequest.Precio,
                 };
                 servicioToUpdate.Nombre = char.ToUpper(servicioToUpdate.Nombre[0]) + servicioToUpdate.Nombre.Substring(1);
                 if (VerifyHTTP404(IdServicio))
@@ -86,15 +74,13 @@ namespace Application.UseCases
                 {
                     throw new Conflict("Existe otro servicio con el mismo nombre a modificar");
                 }
-                
+
                 servicioToUpdate = _command.ModifyServicio(IdServicio, servicioToUpdate);
                 return new ServicioResponse
                 {
                     Id = servicioToUpdate.ServicioId,
                     Nombre = servicioToUpdate.Nombre,
                     Descripcion = servicioToUpdate.Descripción,
-                    Disponibilidad = servicioToUpdate.Disponibilidad,
-                    Precio = servicioToUpdate.Precio,
                 };
             }
             catch (Conflict ex)
@@ -126,8 +112,6 @@ namespace Application.UseCases
                     Id = servicioEliminado.ServicioId,
                     Nombre = servicioEliminado.Nombre,
                     Descripcion = servicioEliminado.Descripción,
-                    Disponibilidad = servicioEliminado.Disponibilidad,
-                    Precio = servicioEliminado.Precio,
                 };
             }
             catch (ExceptionNotFound ex)
@@ -154,8 +138,6 @@ namespace Application.UseCases
                     Id = unServicio.ServicioId,
                     Nombre = unServicio.Nombre,
                     Descripcion = unServicio.Descripción,
-                    Disponibilidad = unServicio.Disponibilidad,
-                    Precio = unServicio.Precio,
                 };
                 listaServiciosResponse.Add(unServicioResponse);
             }
@@ -177,7 +159,7 @@ namespace Application.UseCases
                     GetViajeServicioResponse unViajeServicioResponse = new GetViajeServicioResponse
                     {
                         ViajeId = _viajeServicioService.GetViajeServicioById(unViajeServicio.ViajeId).ViajeId,
-                        ViajeServicioId = _viajeServicioService.GetViajeServicioById(unViajeServicio.ViajeId).ViajeServicioId,
+                        ViajeServicioId = _viajeServicioService.GetViajeServicioById(unViajeServicio.ViajeId).Id,
                     };
                     ListaDeViajesConEseServicio.Add(unViajeServicioResponse);
                 }
@@ -186,9 +168,7 @@ namespace Application.UseCases
                     Id = unServicio.ServicioId,
                     Nombre = unServicio.Nombre,
                     Descripcion = unServicio.Descripción,
-                    Disponibilidad = unServicio.Disponibilidad,
-                    Precio = unServicio.Precio,
-                    ServicioEnElViaje = ListaDeViajesConEseServicio,    
+                    ServicioEnElViaje = ListaDeViajesConEseServicio,
                 };
             }
             catch (ExceptionSintaxError)
@@ -217,7 +197,7 @@ namespace Application.UseCases
             }
             return false;
         }
-        
+
         private bool VerifyHTTP409Modify(Servicio unServicio)
         {
             List<Servicio> listaMercaderias = _query.GetAllServicios();
@@ -235,7 +215,7 @@ namespace Application.UseCases
 
         private bool VerifyHTTP404(int IdServicio)
         {
-            if ( _query.GetServicioById(IdServicio) == null)
+            if (_query.GetServicioById(IdServicio) == null)
             {
                 return true;
             }

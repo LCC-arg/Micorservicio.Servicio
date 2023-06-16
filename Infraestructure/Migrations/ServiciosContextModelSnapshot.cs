@@ -33,19 +33,33 @@ namespace Infraestructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Disponibilidad")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Precio")
-                        .HasColumnType("int");
-
                     b.HasKey("ServicioId");
 
                     b.ToTable("Servicio", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ServicioId = 1,
+                            Descripción = "Internet a toda velocidad",
+                            Nombre = "Wi-fi"
+                        },
+                        new
+                        {
+                            ServicioId = 2,
+                            Descripción = "Servicio de comida",
+                            Nombre = "Alimentos"
+                        },
+                        new
+                        {
+                            ServicioId = 3,
+                            Descripción = "Para viajar con la mayor comodidad posible",
+                            Nombre = "Aire Acondicionado"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.ViajeServicio", b =>

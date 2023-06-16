@@ -3,11 +3,6 @@ using Application.Interfaces;
 using Domain.Entities;
 using Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infraestructure.Queries
 {
@@ -19,16 +14,16 @@ namespace Infraestructure.Queries
             _context = context;
         }
 
-        public List<ViajeServicio> GetAllViajeServicios()
+        public List<ViajeServicio> GetAllViajeServicios(int viajeId)
         {
-            try
+            var viajeServicios = _context.ViajeServicios.ToList();
+
+            if (viajeId != 0)
             {
-                return _context.ViajeServicios.ToList();
+                viajeServicios = viajeServicios.Where(vc => vc.ViajeId == viajeId).ToList();
             }
-            catch (DbUpdateException)
-            {
-                throw new ExceptionNotFound("No existen Viaje Servicio");
-            }
+
+            return viajeServicios;
         }
 
 

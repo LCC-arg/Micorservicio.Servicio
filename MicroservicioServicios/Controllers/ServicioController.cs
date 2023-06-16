@@ -3,7 +3,6 @@ using Application.Interfaces;
 using Application.Requests;
 using Application.responses;
 using Application.Responses;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroservicioServicios.Controllers
@@ -80,7 +79,7 @@ namespace MicroservicioServicios.Controllers
             {
                 var result = _service.UpdateServicio(Id, servicio);
                 return new JsonResult(result) { StatusCode = 200 };
-            } 
+            }
             catch (ExceptionSintaxError ex)
             {
                 return new JsonResult(new BadRequest { Message = ex.Message }) { StatusCode = 400 };

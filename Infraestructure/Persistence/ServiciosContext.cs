@@ -1,11 +1,7 @@
 ﻿using Domain.Entities;
 using Infraestructure.Config;
+using Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infraestructure.Persistence
 {
@@ -19,6 +15,8 @@ namespace Infraestructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ServicioConfig());
+            modelBuilder.ApplyConfiguration(new ServicioData());
+
             modelBuilder.ApplyConfiguration(new ViajeServicioConfig());
         }
     }

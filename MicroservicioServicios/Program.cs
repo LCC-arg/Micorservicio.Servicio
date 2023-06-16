@@ -28,7 +28,7 @@ builder.Services.AddScoped<IServicioService, ServicioService>();
 builder.Services.AddScoped<IServicioQuery, ServicioQuery>();
 builder.Services.AddScoped<IServicioCommand, ServicioCommand>();
 
-builder.Services.AddScoped<IViajeApi, ViajeApi>(); 
+builder.Services.AddScoped<IViajeApi, ViajeApi>();
 
 
 //CORS deshabilitar

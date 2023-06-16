@@ -3,7 +3,6 @@ using Application.Interfaces;
 using Application.Requests;
 using Application.responses;
 using Application.Responses;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroservicioServicios.Controllers
@@ -40,12 +39,11 @@ namespace MicroservicioServicios.Controllers
         }
         [HttpGet]
         [ProducesResponseType(typeof(ViajeServicioResponse), 200)]
-        public IActionResult GetAllViajeServicios()
+        public IActionResult GetAllViajeServicios(int viajeId)
         {
-                var result = _service.GetAllViajesServicio();
-                return new JsonResult(result) { StatusCode = 200 };            
+            var result = _service.GetAllViajesServicio(viajeId);
+            return new JsonResult(result) { StatusCode = 200 };
         }
-
 
 
         [HttpGet("{id}")]

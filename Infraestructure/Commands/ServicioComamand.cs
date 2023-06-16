@@ -3,11 +3,6 @@ using Application.Interfaces;
 using Domain.Entities;
 using Infraestructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infraestructure.Commands
 {
@@ -44,7 +39,7 @@ namespace Infraestructure.Commands
                 _context.SaveChanges();
                 return unServicio;
             }
-            catch(DbUpdateException ex)
+            catch (DbUpdateException ex)
             {
 
                 throw new Conflict("Error en la inserción a la base de datos", ex);
@@ -60,8 +55,6 @@ namespace Infraestructure.Commands
                 {
                     servicioToUpdate.Nombre = servicio.Nombre;
                     servicioToUpdate.Descripción = servicio.Descripción;
-                    servicioToUpdate.Disponibilidad = servicio.Disponibilidad;
-                    servicioToUpdate.Precio = servicio.Precio;
                     _context.SaveChanges();
 
                 }

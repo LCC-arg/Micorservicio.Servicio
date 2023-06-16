@@ -1,14 +1,8 @@
 ﻿using Application.Exceptions;
 using Application.Interfaces;
 using Application.Requests;
-using Application.responses;
 using Application.Responses;
 using Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UseCases
 {
@@ -33,7 +27,7 @@ namespace Application.UseCases
                     ServicioId = viajeServicioRequest.ServicioId,
                     ViajeId = viajeServicioRequest.ViajeId,
                 };
-                var response = _api.GetViajeById(unViajeServicio.ViajeId);
+                //var response = _api.GetViajeById(unViajeServicio.ViajeId);
                 if (VerifyServicioID(unViajeServicio.ServicioId))
                 {
                     throw new Conflict("El Servicio no existe");
@@ -43,10 +37,10 @@ namespace Application.UseCases
                     throw new Conflict("El Viaje Servicio ya existe");
                 }
                 ViajeServicio servicioIngresado = _command.InsertViajeServicio(unViajeServicio);
-                
+
                 return new ViajeServicioResponse
                 {
-                    ViajeServicioId = unViajeServicio.ViajeServicioId,
+                    Id = unViajeServicio.ViajeServicioId,
                     ViajeId = unViajeServicio.ViajeId,
                     ServicioId = unViajeServicio.ServicioId,
                 };
@@ -61,7 +55,7 @@ namespace Application.UseCases
             }
             catch (ExceptionNotFound ex)
             {
-                throw new ExceptionSintaxError("Error en la busqueda: "+ex.Message);
+                throw new ExceptionSintaxError("Error en la busqueda: " + ex.Message);
             }
 
         }
@@ -78,7 +72,7 @@ namespace Application.UseCases
                 ViajeServicio servicioEliminado = _command.DeleteViajeServicio(idViajeServicio);
                 return new ViajeServicioResponse
                 {
-                    ViajeServicioId = servicioEliminado.ServicioId,
+                    Id = servicioEliminado.ServicioId,
                     ViajeId = servicioEliminado.ViajeId,
                     ServicioId = servicioEliminado.ServicioId,
                 };
@@ -118,7 +112,7 @@ namespace Application.UseCases
                 viajeServicioToUpdate = _command.ModifyViajeServicio(idViajeServicio, viajeServicioToUpdate);
                 return new ViajeServicioResponse
                 {
-                    ViajeServicioId = viajeServicioToUpdate.ServicioId,
+                    Id = viajeServicioToUpdate.ServicioId,
                     ViajeId = viajeServicioToUpdate.ViajeId,
                     ServicioId = viajeServicioToUpdate.ServicioId,
                 };
@@ -134,21 +128,21 @@ namespace Application.UseCases
 
         }
 
-        public List<ViajeServicioResponse> GetAllViajesServicio()
+        public List<ViajeServicioResponse> GetAllViajesServicio(int viajeId)
         {
-                List<ViajeServicio> listaViajeServicios = _query.GetAllViajeServicios();
-                List<ViajeServicioResponse> listaViajeServiciosResponse = new List<ViajeServicioResponse>();
-                foreach (ViajeServicio unViajeServicio in listaViajeServicios)
+            List<ViajeServicio> listaViajeServicios = _query.GetAllViajeServicios(viajeId);
+            List<ViajeServicioResponse> listaViajeServiciosResponse = new List<ViajeServicioResponse>();
+            foreach (ViajeServicio unViajeServicio in listaViajeServicios)
+            {
+                ViajeServicioResponse unViajeServicioResponse = new ViajeServicioResponse
                 {
-                    ViajeServicioResponse unViajeServicioResponse = new ViajeServicioResponse
-                    {
-                        ViajeServicioId = unViajeServicio.ServicioId,
-                        ViajeId = unViajeServicio.ViajeId,
-                        ServicioId = unViajeServicio.ServicioId,
-                    };
-                    listaViajeServiciosResponse.Add(unViajeServicioResponse);
-                }
-                return listaViajeServiciosResponse;
+                    Id = unViajeServicio.ServicioId,
+                    ViajeId = unViajeServicio.ViajeId,
+                    ServicioId = unViajeServicio.ServicioId,
+                };
+                listaViajeServiciosResponse.Add(unViajeServicioResponse);
+            }
+            return listaViajeServiciosResponse;
         }
 
         public ViajeServicioResponse GetViajeServicioById(int idViajeServicio)
@@ -162,7 +156,7 @@ namespace Application.UseCases
                 ViajeServicio unViajeServicio = _query.GetViajeServicioById(idViajeServicio);
                 return new ViajeServicioResponse
                 {
-                    ViajeServicioId = unViajeServicio.ServicioId,
+                    Id = unViajeServicio.ServicioId,
                     ViajeId = unViajeServicio.ViajeId,
 
                 };
@@ -174,15 +168,15 @@ namespace Application.UseCases
             catch (ExceptionNotFound ex)
             {
                 throw new ExceptionNotFound("Error en la búsqueda en la base de datos: " + ex.Message);
-            }      
+            }
         }
 
         private bool VerifyHTTP409Insert(ViajeServicio unViajeServicio)
         {
-            List<ViajeServicio> listaViajeServicios = _query.GetAllViajeServicios();
+            List<ViajeServicio> listaViajeServicios = _query.GetAllViajeServicios(0);
             foreach (ViajeServicio viajeServicio in listaViajeServicios)
             {
-                
+
                 if (viajeServicio.ViajeServicioId == unViajeServicio.ViajeServicioId)
                 {
                     return true;
@@ -193,7 +187,7 @@ namespace Application.UseCases
 
         private bool VerifyHTTP409Modify(ViajeServicio unViajeServicio)
         {
-            List<ViajeServicio> listaViajeServicios = _query.GetAllViajeServicios();
+            List<ViajeServicio> listaViajeServicios = _query.GetAllViajeServicios(0);
             foreach (ViajeServicio viajeServicio in listaViajeServicios)
             {
                 if (unViajeServicio.ViajeServicioId != viajeServicio.ViajeServicioId && unViajeServicio.ViajeId == viajeServicio.ViajeId && unViajeServicio.ServicioId == viajeServicio.ServicioId)

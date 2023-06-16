@@ -1,15 +1,9 @@
 ﻿using Application.Exceptions;
 using Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infraestructure.Client
 {
-    public class ViajeApi: IViajeApi
+    public class ViajeApi : IViajeApi
     {
         private readonly HttpClient _httpClient;
 

@@ -7309,19 +7309,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lucas\\.nuget\\packages\\": {}
+    "C:\\Users\\solow\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Users\\solow\\Desktop\\Primer Cuatrimestre\\Proyecto de Software N°1\\Proyecto Grupal\\Micorservicio.Servicio\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\Lucas\\.nuget\\packages\\",
-      "outputPath": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Application\\obj\\",
+      "projectPath": "C:\\Users\\solow\\Desktop\\Primer Cuatrimestre\\Proyecto de Software N°1\\Proyecto Grupal\\Micorservicio.Servicio\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\solow\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\solow\\Desktop\\Primer Cuatrimestre\\Proyecto de Software N°1\\Proyecto Grupal\\Micorservicio.Servicio\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lucas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\solow\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7335,8 +7335,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Domain\\Domain.csproj": {
-              "projectPath": "D:\\facultad\\cuarto año\\proyecto software\\Microservicio Servicio\\Domain\\Domain.csproj"
+            "C:\\Users\\solow\\Desktop\\Primer Cuatrimestre\\Proyecto de Software N°1\\Proyecto Grupal\\Micorservicio.Servicio\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\solow\\Desktop\\Primer Cuatrimestre\\Proyecto de Software N°1\\Proyecto Grupal\\Micorservicio.Servicio\\Domain\\Domain.csproj"
             }
           }
         }
