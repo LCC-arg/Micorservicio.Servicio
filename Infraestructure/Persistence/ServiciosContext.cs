@@ -18,6 +18,7 @@ namespace Infraestructure.Persistence
             modelBuilder.ApplyConfiguration(new ServicioData());
 
             modelBuilder.ApplyConfiguration(new ViajeServicioConfig());
+            modelBuilder.ApplyConfiguration(new ViajeServicioData());
         }
     }
 }

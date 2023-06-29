@@ -81,6 +81,32 @@ namespace Infraestructure.Migrations
                     b.HasIndex("ServicioId");
 
                     b.ToTable("ViajeServicio", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            ViajeServicioId = 1,
+                            ServicioId = 1,
+                            ViajeId = 1
+                        },
+                        new
+                        {
+                            ViajeServicioId = 2,
+                            ServicioId = 2,
+                            ViajeId = 1
+                        },
+                        new
+                        {
+                            ViajeServicioId = 3,
+                            ServicioId = 2,
+                            ViajeId = 2
+                        },
+                        new
+                        {
+                            ViajeServicioId = 4,
+                            ServicioId = 3,
+                            ViajeId = 3
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.ViajeServicio", b =>
