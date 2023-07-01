@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(ServiciosContext))]
-    [Migration("20230629144913_init")]
+    [Migration("20230701142425_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -109,6 +109,96 @@ namespace Infraestructure.Migrations
                             ViajeServicioId = 4,
                             ServicioId = 3,
                             ViajeId = 3
+                        },
+                        new
+                        {
+                            ViajeServicioId = 5,
+                            ServicioId = 1,
+                            ViajeId = 4
+                        },
+                        new
+                        {
+                            ViajeServicioId = 6,
+                            ServicioId = 2,
+                            ViajeId = 5
+                        },
+                        new
+                        {
+                            ViajeServicioId = 7,
+                            ServicioId = 2,
+                            ViajeId = 6
+                        },
+                        new
+                        {
+                            ViajeServicioId = 8,
+                            ServicioId = 3,
+                            ViajeId = 7
+                        },
+                        new
+                        {
+                            ViajeServicioId = 9,
+                            ServicioId = 1,
+                            ViajeId = 8
+                        },
+                        new
+                        {
+                            ViajeServicioId = 10,
+                            ServicioId = 2,
+                            ViajeId = 9
+                        },
+                        new
+                        {
+                            ViajeServicioId = 11,
+                            ServicioId = 2,
+                            ViajeId = 10
+                        },
+                        new
+                        {
+                            ViajeServicioId = 12,
+                            ServicioId = 3,
+                            ViajeId = 11
+                        },
+                        new
+                        {
+                            ViajeServicioId = 13,
+                            ServicioId = 1,
+                            ViajeId = 12
+                        },
+                        new
+                        {
+                            ViajeServicioId = 14,
+                            ServicioId = 2,
+                            ViajeId = 13
+                        },
+                        new
+                        {
+                            ViajeServicioId = 15,
+                            ServicioId = 2,
+                            ViajeId = 14
+                        },
+                        new
+                        {
+                            ViajeServicioId = 16,
+                            ServicioId = 3,
+                            ViajeId = 15
+                        },
+                        new
+                        {
+                            ViajeServicioId = 17,
+                            ServicioId = 3,
+                            ViajeId = 16
+                        },
+                        new
+                        {
+                            ViajeServicioId = 18,
+                            ServicioId = 3,
+                            ViajeId = 17
+                        },
+                        new
+                        {
+                            ViajeServicioId = 19,
+                            ServicioId = 3,
+                            ViajeId = 18
                         });
                 });
 
